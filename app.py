@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-# Replace with your actual Google Apps Script URL
+# Your Google Apps Script URL
 GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyuxS5DDVhFVAS36rVWLp-RsMuqr9_V0R_f7XVD_mSoUbu4qg0xUkSG9B6pJRRAAhM57g/exec"
 
 @app.route('/')
@@ -25,4 +25,5 @@ def receive_data():
         return jsonify({"error": f"Failed to contact Google Sheets: {str(e)}"}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 5000)))
+    port = int(os.getenv('PORT', 5000))  # Automatically get the port from Render (this is critical)
+    app.run(host='0.0.0.0', port=port)
