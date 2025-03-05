@@ -7,6 +7,10 @@ app = Flask(__name__)
 # Replace with your actual Google Apps Script URL
 GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyuxS5DDVhFVAS36rVWLp-RsMuqr9_V0R_f7XVD_mSoUbu4qg0xUkSG9B6pJRRAAhM57g/exec"
 
+@app.route('/')
+def home():
+    return "ESP32 Proxy Server is running!", 200
+
 @app.route('/receive-data', methods=['GET'])
 def receive_data():
     data = request.args.get('data')
